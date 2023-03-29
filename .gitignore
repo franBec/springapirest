@@ -1,0 +1,18 @@
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Compiled output
+target/
+build/
+
+# Dependency directories
+/lib/
+/libs/
+/*.jar
+
+# Logs
+logs/
+*.log
