@@ -2,6 +2,7 @@ package com.fbecvort.springapirest.services;
 
 import com.fbecvort.springapirest.dtos.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaResponseDTO;
+import com.fbecvort.springapirest.dtos.retiroDeposito.RetiroDepositoResponseDTO;
 import com.fbecvort.springapirest.enums.TipoMovimiento;
 import org.springframework.data.domain.Page;
 
@@ -22,7 +23,7 @@ public interface CuentaService {
     //CRU[D] -> Delete
     void deleteById(Long id);
 
-    // credito y debito
-    void realizarMovimiento(Long id, BigDecimal valor, TipoMovimiento tipoMovimiento);
+    // RETIRO / DEPOSITO
+    RetiroDepositoResponseDTO realizarMovimiento(Long cuentaId, BigDecimal valor, TipoMovimiento tipoMovimiento);
 
 }

@@ -2,6 +2,7 @@ package com.fbecvort.springapirest.services;
 
 import com.fbecvort.springapirest.dtos.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaResponseDTO;
+import com.fbecvort.springapirest.dtos.retiroDeposito.RetiroDepositoResponseDTO;
 import com.fbecvort.springapirest.entities.Cuenta;
 import com.fbecvort.springapirest.entities.Movimiento;
 import com.fbecvort.springapirest.enums.TipoMovimiento;
@@ -128,10 +129,10 @@ public class CuentaServiceImpl implements CuentaService{
 
     @Override
     @Transactional
-    public void realizarMovimiento(Long id, BigDecimal valor, TipoMovimiento tipoMovimiento) {
+    public RetiroDepositoResponseDTO realizarMovimiento(Long cuentaId, BigDecimal valor, TipoMovimiento tipoMovimiento) {
         Cuenta cuenta = cuentaRepository
-                .findById(id)
-                .orElseThrow(()-> new NoSuchElementException("Cuenta", "id", id));
+                .findById(cuentaId)
+                .orElseThrow(()-> new NoSuchElementException("Cuenta", "id", cuentaId));
 
         Movimiento movimiento = Movimiento
                 .builder()
@@ -149,9 +150,15 @@ public class CuentaServiceImpl implements CuentaService{
             cuenta.setSaldo(cuenta.getSaldo().subtract(valor));
         }
 
-        movimientoRepository.save(movimiento);
+        Long movimientoId = movimientoRepository.save(movimiento).getMovimientoId();
         cuentaRepository.save(cuenta);
 
+        return RetiroDepositoResponseDTO
+                .builder()
+                .message(createMessageForRetiroDepositoResponse(cuentaId, movimientoId, tipoMovimiento))
+                .movimientoId(movimientoId)
+                .cuentaId(cuentaId)
+                .build();
     }
 
     private CuentaResponseDTO cuentaToResponseDTO(Cuenta cuenta) {
@@ -198,5 +205,9 @@ public class CuentaServiceImpl implements CuentaService{
                 )
                 .map(Movimiento::getValor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    private String createMessageForRetiroDepositoResponse(Long cuentaId, Long movimientoId, TipoMovimiento tipoMovimiento){
+        return "La cuenta id="+cuentaId.toString()+" ha realizado un "+tipoMovimiento.toString()+" exitosamente. Id del movimiento="+movimientoId.toString();
     }
 }

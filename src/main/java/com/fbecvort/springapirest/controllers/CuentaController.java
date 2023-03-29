@@ -2,6 +2,9 @@ package com.fbecvort.springapirest.controllers;
 
 import com.fbecvort.springapirest.dtos.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaResponseDTO;
+import com.fbecvort.springapirest.dtos.retiroDeposito.RetiroDepositoRequestDTO;
+import com.fbecvort.springapirest.dtos.retiroDeposito.RetiroDepositoResponseDTO;
+import com.fbecvort.springapirest.enums.TipoMovimiento;
 import com.fbecvort.springapirest.services.CuentaService;
 import com.fbecvort.springapirest.utils.PaginationUtils;
 import jakarta.validation.Valid;
@@ -11,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -59,5 +63,17 @@ public class CuentaController {
     public ResponseEntity<String> delete(@PathVariable Long id) {
         cuentaService.deleteById(id);
         return ResponseEntity.ok("Cuenta con id " + id + " fue eliminada");
+    }
+
+    //Realizar un TipoMovimiento = RETIRO
+    @PatchMapping("/{id}/retiro")
+    public ResponseEntity<RetiroDepositoResponseDTO> realizarRetiro(@PathVariable Long id, @Valid @RequestBody RetiroDepositoRequestDTO request) {
+        return new ResponseEntity<>(cuentaService.realizarMovimiento(id, request.getValor(), TipoMovimiento.RETIRO), HttpStatus.OK);
+    }
+
+    //Realizar un TipoMovimiento = DEPOSITO
+    @PatchMapping("/{id}/deposito")
+    public ResponseEntity<RetiroDepositoResponseDTO> realizarDeposito(@PathVariable Long id, @Valid @RequestBody RetiroDepositoRequestDTO request) {
+        return new ResponseEntity<>(cuentaService.realizarMovimiento(id, request.getValor(), TipoMovimiento.DEPOSITO), HttpStatus.OK);
     }
 }
