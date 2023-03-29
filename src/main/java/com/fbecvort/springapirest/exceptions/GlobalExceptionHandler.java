@@ -1,6 +1,8 @@
 package com.fbecvort.springapirest.exceptions;
 
+import com.fbecvort.springapirest.exceptions.customExceptions.CupoDiarioExcedidoException;
 import com.fbecvort.springapirest.exceptions.customExceptions.NoSuchElementException;
+import com.fbecvort.springapirest.exceptions.customExceptions.SaldoNoDisponibleException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 @Slf4j(topic = "GLOBAL_EXCEPTION_HANDLER")
@@ -24,6 +27,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Value("${reflectoring.trace:false}")
     private boolean printStackTrace;
+
+    @Value("${springapirest.movimiento.retiro-limite-diario:1000.0}")
+    private BigDecimal retiroLimiteDiario;
 
     // ---- Error response builder ----
     private ResponseEntity<Object> buildErrorResponse(Exception exception, String message, HttpStatusCode httpStatus) {
@@ -63,28 +69,44 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // ---- NOT overriden handlers ----
 
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementException itemNotFoundException) {
-        log.error("Failed to find the requested element", itemNotFoundException);
+    public ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementException ex) {
+        log.info("No se pudo encontrar el elemento", ex);
 
         return buildErrorResponse(
-                itemNotFoundException,
-                itemNotFoundException.getMessage(),
+                ex,
+                ex.getMessage(),
                 HttpStatus.NOT_FOUND
         );
     }
-/*
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException illegalArgumentException) {
+    @ExceptionHandler(SaldoNoDisponibleException.class)
+    public ResponseEntity<Object> handleSaldoNoDisponibleException(SaldoNoDisponibleException ex){
+        String logString = "Se intentó debitar " +ex.getMonto().toPlainString() + " de la Cuenta id=" + ex.getId().toString() + " cuyo saldo es de "+ex.getSaldo().toPlainString();
+        log.info(logString,ex);
 
         return buildErrorResponse(
-                illegalArgumentException,
-                illegalArgumentException.getMessage(),
+                ex,
+                ex.getMessage(),
                 HttpStatus.BAD_REQUEST
         );
 
     }
-*/
+
+    @ExceptionHandler(CupoDiarioExcedidoException.class)
+    public ResponseEntity<Object> handleCupoDiarioExcedidoException(CupoDiarioExcedidoException ex){
+        String logString = "La cuenta id=" + ex.getId().toString()
+                + "ha intentado realizar un retiro de " +ex.getMontoARetirar().toPlainString()
+                + "lo cual supera el límite diario de retiro de " + retiroLimiteDiario.toPlainString()
+                + ". La cantidad que se intentó retirar fue de " +ex.getMontoDiarioAcumulado().toPlainString();
+
+        log.info(logString,ex);
+
+        return buildErrorResponse(
+                ex,
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
+    }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

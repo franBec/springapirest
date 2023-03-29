@@ -2,7 +2,10 @@ package com.fbecvort.springapirest.services;
 
 import com.fbecvort.springapirest.dtos.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaResponseDTO;
+import com.fbecvort.springapirest.enums.TipoMovimiento;
 import org.springframework.data.domain.Page;
+
+import java.math.BigDecimal;
 
 public interface CuentaService {
 
@@ -18,4 +21,8 @@ public interface CuentaService {
 
     //CRU[D] -> Delete
     void deleteById(Long id);
+
+    // credito y debito
+    void realizarMovimiento(Long id, BigDecimal valor, TipoMovimiento tipoMovimiento);
+
 }
