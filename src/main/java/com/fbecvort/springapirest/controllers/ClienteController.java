@@ -2,11 +2,15 @@ package com.fbecvort.springapirest.controllers;
 
 import com.fbecvort.springapirest.dtos.cliente.ClienteRequestDTO;
 import com.fbecvort.springapirest.dtos.cliente.ClienteResponseDTO;
+import com.fbecvort.springapirest.dtos.reporte.ReporteCuentaResponseDTO;
 import com.fbecvort.springapirest.services.ClienteService;
+import com.fbecvort.springapirest.services.ReporteService;
+import com.fbecvort.springapirest.utils.DateUtils;
 import com.fbecvort.springapirest.utils.PaginationUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,12 +23,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
     @Autowired
     ClienteService clienteService;
+
+    @Autowired
+    ReporteService reporteService;
 
     //[C]RUD -> Create
     @PostMapping
@@ -59,6 +69,16 @@ public class ClienteController {
     public ResponseEntity<String> delete(@PathVariable Long id) {
         clienteService.deleteById(id);
         return ResponseEntity.ok("Cliente con id " + id + " fue eliminado");
+    }
+
+    //Reporte
+    @GetMapping("/{id}/reporte")
+    public ResponseEntity<List<ReporteCuentaResponseDTO>> reporteCuentasDelCliente(
+            @PathVariable Long id,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date periodoStart,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date periodoEnd
+    ){
+        return new ResponseEntity<>(reporteService.makeReporte(id, periodoStart, DateUtils.setDateAtEndOfTheDay(periodoEnd)), HttpStatus.OK);
     }
 
 }

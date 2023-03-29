@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Service
 public class RetiroAndDepositoServiceImpl implements RetiroAndDepositoService{
@@ -88,7 +89,7 @@ public class RetiroAndDepositoServiceImpl implements RetiroAndDepositoService{
                 .getMovimientos()
                 .stream()
                 .filter(
-                        movimiento -> movimiento.getTipoMovimiento() == TipoMovimiento.RETIRO && DateUtils.checkIfDateHappenedToday(movimiento.getFecha())
+                        movimiento -> Objects.equals(movimiento.getTipoMovimiento(), TipoMovimiento.RETIRO) && DateUtils.checkIfDateHappenedToday(movimiento.getFecha())
                 )
                 .map(Movimiento::getValor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
