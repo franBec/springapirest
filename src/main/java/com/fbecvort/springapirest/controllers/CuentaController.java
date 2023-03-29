@@ -1,15 +1,14 @@
 package com.fbecvort.springapirest.controllers;
 
-import com.fbecvort.springapirest.utils.PaginationUtils;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaResponseDTO;
 import com.fbecvort.springapirest.services.CuentaService;
+import com.fbecvort.springapirest.utils.PaginationUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/cuentas")
-@Validated
 public class CuentaController {
 
     @Autowired
@@ -31,8 +29,7 @@ public class CuentaController {
     //[C]RUD -> Create
     @PostMapping
     public ResponseEntity<CuentaResponseDTO> save(@Valid @RequestBody CuentaRequestDTO request) {
-        CuentaResponseDTO savedCuenta = cuentaService.save(request);
-        return new ResponseEntity<>(savedCuenta, HttpStatus.CREATED);
+        return new ResponseEntity<>(cuentaService.save(request), HttpStatus.CREATED);
     }
 
     //C[R]UD -> READ

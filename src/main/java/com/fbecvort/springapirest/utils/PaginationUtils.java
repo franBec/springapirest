@@ -65,7 +65,7 @@ public class PaginationUtils {
 
     public static final String CLIENTE_SORT_BY_DEFAULT_VALUE = "personaId";
     public static final String CUENTA_SORT_BY_DEFAULT_VALUE = "cuentaId";
-    public static final String MOVIMIENTO_BY_ORDER_DEFAULT_VALUE = "movimientoId";
+    public static final String MOVIMIENTO_SORT_BY_ORDER_DEFAULT_VALUE = "movimientoId";
 
 
 }

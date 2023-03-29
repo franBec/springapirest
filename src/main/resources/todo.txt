@@ -1,2 +1,3 @@
 testing
 check why annotations in PaginationUtils does not work
+create custom exception when trying to delete an entity that has associated entities (DataIntegrityViolationException)
