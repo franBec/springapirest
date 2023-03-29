@@ -1,4 +1,4 @@
-package com.fbecvort.springapirest.dtos.retiroDeposito;
+package com.fbecvort.springapirest.dtos.retiroAndDeposito;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +13,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Builder
-public class RetiroDepositoRequestDTO {
+public class RetiroAndDepositoRequestDTO {
     private BigDecimal valor;
 }

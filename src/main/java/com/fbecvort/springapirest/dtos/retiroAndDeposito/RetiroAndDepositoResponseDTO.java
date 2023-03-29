@@ -1,4 +1,4 @@
-package com.fbecvort.springapirest.dtos.retiroDeposito;
+package com.fbecvort.springapirest.dtos.retiroAndDeposito;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class RetiroDepositoResponseDTO {
+public class RetiroAndDepositoResponseDTO {
     String message;
     Long cuentaId;
     Long movimientoId;

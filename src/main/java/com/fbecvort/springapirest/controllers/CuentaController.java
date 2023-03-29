@@ -2,10 +2,11 @@ package com.fbecvort.springapirest.controllers;
 
 import com.fbecvort.springapirest.dtos.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaResponseDTO;
-import com.fbecvort.springapirest.dtos.retiroDeposito.RetiroDepositoRequestDTO;
-import com.fbecvort.springapirest.dtos.retiroDeposito.RetiroDepositoResponseDTO;
+import com.fbecvort.springapirest.dtos.retiroAndDeposito.RetiroAndDepositoRequestDTO;
+import com.fbecvort.springapirest.dtos.retiroAndDeposito.RetiroAndDepositoResponseDTO;
 import com.fbecvort.springapirest.enums.TipoMovimiento;
 import com.fbecvort.springapirest.services.CuentaService;
+import com.fbecvort.springapirest.services.RetiroAndDepositoService;
 import com.fbecvort.springapirest.utils.PaginationUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class CuentaController {
 
     @Autowired
     CuentaService cuentaService;
+
+    @Autowired
+    RetiroAndDepositoService retiroAndDepositoService;
 
     //[C]RUD -> Create
     @PostMapping
@@ -67,13 +71,13 @@ public class CuentaController {
 
     //Realizar un TipoMovimiento = RETIRO
     @PatchMapping("/{id}/retiro")
-    public ResponseEntity<RetiroDepositoResponseDTO> realizarRetiro(@PathVariable Long id, @Valid @RequestBody RetiroDepositoRequestDTO request) {
-        return new ResponseEntity<>(cuentaService.realizarMovimiento(id, request.getValor(), TipoMovimiento.RETIRO), HttpStatus.OK);
+    public ResponseEntity<RetiroAndDepositoResponseDTO> realizarRetiro(@PathVariable Long id, @Valid @RequestBody RetiroAndDepositoRequestDTO request) {
+        return new ResponseEntity<>(retiroAndDepositoService.realizarMovimiento(id, request.getValor(), TipoMovimiento.RETIRO), HttpStatus.OK);
     }
 
     //Realizar un TipoMovimiento = DEPOSITO
     @PatchMapping("/{id}/deposito")
-    public ResponseEntity<RetiroDepositoResponseDTO> realizarDeposito(@PathVariable Long id, @Valid @RequestBody RetiroDepositoRequestDTO request) {
-        return new ResponseEntity<>(cuentaService.realizarMovimiento(id, request.getValor(), TipoMovimiento.DEPOSITO), HttpStatus.OK);
+    public ResponseEntity<RetiroAndDepositoResponseDTO> realizarDeposito(@PathVariable Long id, @Valid @RequestBody RetiroAndDepositoRequestDTO request) {
+        return new ResponseEntity<>(retiroAndDepositoService.realizarMovimiento(id, request.getValor(), TipoMovimiento.DEPOSITO), HttpStatus.OK);
     }
 }
