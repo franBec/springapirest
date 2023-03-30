@@ -2,8 +2,8 @@ package com.fbecvort.springapirest.controllers;
 
 import com.fbecvort.springapirest.dtos.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaResponseDTO;
-import com.fbecvort.springapirest.dtos.retiroAndDeposito.RetiroAndDepositoRequestDTO;
-import com.fbecvort.springapirest.dtos.retiroAndDeposito.RetiroAndDepositoResponseDTO;
+import com.fbecvort.springapirest.dtos.retiroanddeposito.RetiroAndDepositoRequestDTO;
+import com.fbecvort.springapirest.dtos.retiroanddeposito.RetiroAndDepositoResponseDTO;
 import com.fbecvort.springapirest.enums.TipoMovimiento;
 import com.fbecvort.springapirest.services.CuentaService;
 import com.fbecvort.springapirest.services.RetiroAndDepositoService;

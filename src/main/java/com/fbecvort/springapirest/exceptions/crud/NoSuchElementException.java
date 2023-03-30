@@ -1,4 +1,4 @@
-package com.fbecvort.springapirest.exceptions.customExceptions;
+package com.fbecvort.springapirest.exceptions.crud;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

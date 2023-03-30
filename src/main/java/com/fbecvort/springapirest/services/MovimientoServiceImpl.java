@@ -3,7 +3,7 @@ package com.fbecvort.springapirest.services;
 import com.fbecvort.springapirest.dtos.movimiento.MovimientoRequestDTO;
 import com.fbecvort.springapirest.dtos.movimiento.MovimientoResponseDTO;
 import com.fbecvort.springapirest.entities.Movimiento;
-import com.fbecvort.springapirest.exceptions.customExceptions.NoSuchElementException;
+import com.fbecvort.springapirest.exceptions.crud.NoSuchElementException;
 import com.fbecvort.springapirest.repositories.CuentaRepository;
 import com.fbecvort.springapirest.repositories.MovimientoRepository;
 import com.fbecvort.springapirest.utils.PaginationUtils;

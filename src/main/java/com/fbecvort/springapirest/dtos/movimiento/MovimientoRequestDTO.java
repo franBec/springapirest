@@ -1,5 +1,6 @@
 package com.fbecvort.springapirest.dtos.movimiento;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fbecvort.springapirest.enums.TipoMovimiento;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.Date;
 @Data
 public class MovimientoRequestDTO {
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     @Builder.Default
     private Date fecha = new Date();
 

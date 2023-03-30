@@ -75,10 +75,10 @@ public class ClienteController {
     @GetMapping("/{id}/reporte")
     public ResponseEntity<List<ReporteCuentaResponseDTO>> reporteCuentasDelCliente(
             @PathVariable Long id,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date periodoStart,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date periodoEnd
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") Date periodoStart,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX") Date periodoEnd
     ){
-        return new ResponseEntity<>(reporteService.makeReporte(id, periodoStart, DateUtils.setDateAtEndOfTheDay(periodoEnd)), HttpStatus.OK);
+        return new ResponseEntity<>(reporteService.makeReporte(id, periodoStart, periodoEnd), HttpStatus.OK);
     }
 
 }

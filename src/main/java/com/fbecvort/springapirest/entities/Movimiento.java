@@ -27,9 +27,7 @@ public class Movimiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movimientoId;
 
-    @Builder.Default
-    private Date fecha = new Date();
-
+    private Date fecha;
     private TipoMovimiento tipoMovimiento;
     private BigDecimal valor;
     private BigDecimal saldoInicial;

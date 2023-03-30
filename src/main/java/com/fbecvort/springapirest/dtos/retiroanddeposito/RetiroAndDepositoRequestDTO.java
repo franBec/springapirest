@@ -1,4 +1,4 @@
-package com.fbecvort.springapirest.dtos.retiroAndDeposito;
+package com.fbecvort.springapirest.dtos.retiroanddeposito;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

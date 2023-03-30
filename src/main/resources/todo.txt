@@ -1,3 +1,4 @@
 testing
 check why annotations in PaginationUtils does not work
-create custom exception when trying to delete an entity that has associated entities (DataIntegrityViolationException)
+check why dates are kinda sloppy when asking for report
+add swagger

@@ -1,6 +1,6 @@
 package com.fbecvort.springapirest.services;
 
-import com.fbecvort.springapirest.dtos.retiroAndDeposito.RetiroAndDepositoResponseDTO;
+import com.fbecvort.springapirest.dtos.retiroanddeposito.RetiroAndDepositoResponseDTO;
 import com.fbecvort.springapirest.enums.TipoMovimiento;
 
 import java.math.BigDecimal;

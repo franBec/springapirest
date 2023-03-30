@@ -1,12 +1,12 @@
 package com.fbecvort.springapirest.services;
 
-import com.fbecvort.springapirest.dtos.retiroAndDeposito.RetiroAndDepositoResponseDTO;
+import com.fbecvort.springapirest.dtos.retiroanddeposito.RetiroAndDepositoResponseDTO;
 import com.fbecvort.springapirest.entities.Cuenta;
 import com.fbecvort.springapirest.entities.Movimiento;
 import com.fbecvort.springapirest.enums.TipoMovimiento;
-import com.fbecvort.springapirest.exceptions.customExceptions.CupoDiarioExcedidoException;
-import com.fbecvort.springapirest.exceptions.customExceptions.NoSuchElementException;
-import com.fbecvort.springapirest.exceptions.customExceptions.SaldoNoDisponibleException;
+import com.fbecvort.springapirest.exceptions.bussinessneeds.CupoDiarioExcedidoException;
+import com.fbecvort.springapirest.exceptions.crud.NoSuchElementException;
+import com.fbecvort.springapirest.exceptions.bussinessneeds.SaldoNoDisponibleException;
 import com.fbecvort.springapirest.repositories.CuentaRepository;
 import com.fbecvort.springapirest.repositories.MovimientoRepository;
 import com.fbecvort.springapirest.utils.DateUtils;

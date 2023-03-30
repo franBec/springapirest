@@ -4,7 +4,8 @@ import com.fbecvort.springapirest.dtos.cliente.ClienteRequestDTO;
 import com.fbecvort.springapirest.dtos.cliente.ClienteResponseDTO;
 import com.fbecvort.springapirest.entities.Cliente;
 import com.fbecvort.springapirest.entities.Cuenta;
-import com.fbecvort.springapirest.exceptions.customExceptions.NoSuchElementException;
+import com.fbecvort.springapirest.exceptions.crud.EntidadConElementosAsociadosException;
+import com.fbecvort.springapirest.exceptions.crud.NoSuchElementException;
 import com.fbecvort.springapirest.repositories.ClienteRepository;
 import com.fbecvort.springapirest.utils.PaginationUtils;
 import org.dozer.DozerBeanMapper;
@@ -75,8 +76,12 @@ public class ClienteServiceImpl implements ClienteService{
     @Override
     @Transactional
     public void deleteById(Long id) {
-        if(!clienteRepository.existsById(id)){
-            throw new NoSuchElementException("Cliente", "id", id);
+        Cliente cliente = clienteRepository
+                .findById(id)
+                .orElseThrow(()-> new NoSuchElementException("Cliente", "id", id));
+
+        if(!cliente.getCuentas().isEmpty()) {
+            throw new EntidadConElementosAsociadosException("Cliente", id, "Cuenta");
         }
 
         clienteRepository.deleteById(id);

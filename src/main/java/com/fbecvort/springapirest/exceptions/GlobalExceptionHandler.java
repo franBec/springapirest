@@ -1,8 +1,9 @@
 package com.fbecvort.springapirest.exceptions;
 
-import com.fbecvort.springapirest.exceptions.customExceptions.CupoDiarioExcedidoException;
-import com.fbecvort.springapirest.exceptions.customExceptions.NoSuchElementException;
-import com.fbecvort.springapirest.exceptions.customExceptions.SaldoNoDisponibleException;
+import com.fbecvort.springapirest.exceptions.bussinessneeds.CupoDiarioExcedidoException;
+import com.fbecvort.springapirest.exceptions.crud.EntidadConElementosAsociadosException;
+import com.fbecvort.springapirest.exceptions.crud.NoSuchElementException;
+import com.fbecvort.springapirest.exceptions.bussinessneeds.SaldoNoDisponibleException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -76,6 +77,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 ex,
                 ex.getMessage(),
                 HttpStatus.NOT_FOUND
+        );
+    }
+
+    @ExceptionHandler(EntidadConElementosAsociadosException.class)
+    public ResponseEntity<Object> handleEntidadConElementosAsociadosException(EntidadConElementosAsociadosException ex) {
+        log.info("No se pudo elminar el elemento", ex);
+
+        return buildErrorResponse(
+                ex,
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
         );
     }
 

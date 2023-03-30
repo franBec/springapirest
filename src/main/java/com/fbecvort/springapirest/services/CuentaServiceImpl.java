@@ -4,21 +4,20 @@ import com.fbecvort.springapirest.dtos.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dtos.cuenta.CuentaResponseDTO;
 import com.fbecvort.springapirest.entities.Cuenta;
 import com.fbecvort.springapirest.entities.Movimiento;
-import com.fbecvort.springapirest.exceptions.customExceptions.NoSuchElementException;
+import com.fbecvort.springapirest.exceptions.crud.EntidadConElementosAsociadosException;
+import com.fbecvort.springapirest.exceptions.crud.NoSuchElementException;
 import com.fbecvort.springapirest.repositories.ClienteRepository;
 import com.fbecvort.springapirest.repositories.CuentaRepository;
 import com.fbecvort.springapirest.repositories.MovimientoRepository;
 import com.fbecvort.springapirest.utils.PaginationUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -33,9 +32,6 @@ public class CuentaServiceImpl implements CuentaService{
 
     @Autowired
     MovimientoRepository movimientoRepository;
-
-    @Value("${springapirest.movimiento.retiro-limite-diario:1000.0}")
-    private BigDecimal retiroLimiteDiario;
 
     @Override
     @Transactional
@@ -115,8 +111,12 @@ public class CuentaServiceImpl implements CuentaService{
     @Override
     @Transactional
     public void deleteById(Long id) {
-        if(!cuentaRepository.existsById(id)){
-            throw new NoSuchElementException("Cuenta", "id", id);
+        Cuenta cuenta = cuentaRepository
+                .findById(id)
+                .orElseThrow(()-> new NoSuchElementException("Cuenta", "id", id));
+
+        if(!cuenta.getMovimientos().isEmpty()) {
+            throw new EntidadConElementosAsociadosException("Cuenta", id, "Movimiento");
         }
 
         cuentaRepository.deleteById(id);

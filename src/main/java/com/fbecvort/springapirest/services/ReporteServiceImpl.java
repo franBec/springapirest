@@ -4,7 +4,7 @@ import com.fbecvort.springapirest.dtos.reporte.ReporteCuentaResponseDTO;
 import com.fbecvort.springapirest.entities.Cuenta;
 import com.fbecvort.springapirest.entities.Movimiento;
 import com.fbecvort.springapirest.enums.TipoMovimiento;
-import com.fbecvort.springapirest.exceptions.customExceptions.NoSuchElementException;
+import com.fbecvort.springapirest.exceptions.crud.NoSuchElementException;
 import com.fbecvort.springapirest.repositories.ClienteRepository;
 import com.fbecvort.springapirest.repositories.CuentaRepository;
 import com.fbecvort.springapirest.utils.DateUtils;
