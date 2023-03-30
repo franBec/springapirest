@@ -38,6 +38,7 @@ public class Cuenta {
     @JoinColumn(name = "personaId", nullable = false)
     private Cliente cliente;
 
+    @Builder.Default
     @OneToMany(mappedBy = "cuenta")
     private Set<Movimiento> movimientos = new HashSet<>();
 }

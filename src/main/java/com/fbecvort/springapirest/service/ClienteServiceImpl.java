@@ -4,7 +4,7 @@ import com.fbecvort.springapirest.dto.cliente.ClienteRequestDTO;
 import com.fbecvort.springapirest.dto.cliente.ClienteResponseDTO;
 import com.fbecvort.springapirest.entity.Cliente;
 import com.fbecvort.springapirest.entity.Cuenta;
-import com.fbecvort.springapirest.exception.crud.EntidadConElementosAsociadosException;
+import com.fbecvort.springapirest.exception.crud.EntityWithAssociatedElementsException;
 import com.fbecvort.springapirest.exception.crud.NoSuchElementException;
 import com.fbecvort.springapirest.repository.ClienteRepository;
 import com.fbecvort.springapirest.util.PaginationUtils;
@@ -81,7 +81,7 @@ public class ClienteServiceImpl implements ClienteService{
                 .orElseThrow(()-> new NoSuchElementException("Cliente", "id", id));
 
         if(!cliente.getCuentas().isEmpty()) {
-            throw new EntidadConElementosAsociadosException("Cliente", id, "Cuenta");
+            throw new EntityWithAssociatedElementsException("Cliente", id, "Cuenta");
         }
 
         clienteRepository.deleteById(id);

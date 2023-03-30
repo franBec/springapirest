@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Getter
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class EntidadConElementosAsociadosException extends RuntimeException{
+public class EntityWithAssociatedElementsException extends RuntimeException{
 
-    public EntidadConElementosAsociadosException(){
+    public EntityWithAssociatedElementsException(){
         super();
     }
 
-    public EntidadConElementosAsociadosException(String entidadClassname, Long entidadId, String elementosClassName ){
+    public EntityWithAssociatedElementsException(String entidadClassname, Long entidadId, String elementosClassName ){
         super("No se pudo eliminar el elemento "+entidadClassname+" con id="+entidadId+" debido a que tiene asociado al menos un/a "+elementosClassName);
     }
 }

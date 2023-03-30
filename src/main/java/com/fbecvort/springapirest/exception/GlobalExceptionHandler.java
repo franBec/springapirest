@@ -1,7 +1,7 @@
 package com.fbecvort.springapirest.exception;
 
 import com.fbecvort.springapirest.exception.bussinessneed.CupoDiarioExcedidoException;
-import com.fbecvort.springapirest.exception.crud.EntidadConElementosAsociadosException;
+import com.fbecvort.springapirest.exception.crud.EntityWithAssociatedElementsException;
 import com.fbecvort.springapirest.exception.crud.NoSuchElementException;
 import com.fbecvort.springapirest.exception.bussinessneed.SaldoNoDisponibleException;
 import lombok.extern.slf4j.Slf4j;
@@ -80,8 +80,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
-    @ExceptionHandler(EntidadConElementosAsociadosException.class)
-    public ResponseEntity<Object> handleEntidadConElementosAsociadosException(EntidadConElementosAsociadosException ex) {
+    @ExceptionHandler(EntityWithAssociatedElementsException.class)
+    public ResponseEntity<Object> handleEntidadConElementosAsociadosException(EntityWithAssociatedElementsException ex) {
         log.info("No se pudo elminar el elemento", ex);
 
         return buildErrorResponse(

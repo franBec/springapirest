@@ -4,7 +4,7 @@ import com.fbecvort.springapirest.dto.cuenta.CuentaRequestDTO;
 import com.fbecvort.springapirest.dto.cuenta.CuentaResponseDTO;
 import com.fbecvort.springapirest.entity.Cuenta;
 import com.fbecvort.springapirest.entity.Movimiento;
-import com.fbecvort.springapirest.exception.crud.EntidadConElementosAsociadosException;
+import com.fbecvort.springapirest.exception.crud.EntityWithAssociatedElementsException;
 import com.fbecvort.springapirest.exception.crud.NoSuchElementException;
 import com.fbecvort.springapirest.repository.ClienteRepository;
 import com.fbecvort.springapirest.repository.CuentaRepository;
@@ -116,7 +116,7 @@ public class CuentaServiceImpl implements CuentaService{
                 .orElseThrow(()-> new NoSuchElementException("Cuenta", "id", id));
 
         if(!cuenta.getMovimientos().isEmpty()) {
-            throw new EntidadConElementosAsociadosException("Cuenta", id, "Movimiento");
+            throw new EntityWithAssociatedElementsException("Cuenta", id, "Movimiento");
         }
 
         cuentaRepository.deleteById(id);
