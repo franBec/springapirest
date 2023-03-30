@@ -1,6 +1,0 @@
-testing
-check why annotations in PaginationUtils does not work
-check why dates are kinda sloppy when asking for report
-add swagger
-mejorar nombres enumerados
-uniques

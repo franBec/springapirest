@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "3e9fdfd1-edaf-42d4-908c-c6a9c8b1b580",
+		"name": "springapirest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "clientes",
+			"item": [
+				{
+					"name": "findall",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{clientesUrl}}",
+							"host": [
+								"{{baseUrl}}{{clientesUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{clientesUrl}}/1",
+							"host": [
+								"{{baseUrl}}{{clientesUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reporte",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{clientesUrl}}/1/reporte?periodoStart=2022-12-29T00:00:00.000-03:00&periodoEnd=2023-01-01T00:00:00.000-03:00",
+							"host": [
+								"{{baseUrl}}{{clientesUrl}}"
+							],
+							"path": [
+								"1",
+								"reporte"
+							],
+							"query": [
+								{
+									"key": "periodoStart",
+									"value": "2022-12-29T00:00:00.000-03:00"
+								},
+								{
+									"key": "periodoEnd",
+									"value": "2023-01-01T00:00:00.000-03:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{clientesUrl}}/1",
+							"host": [
+								"{{baseUrl}}{{clientesUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Franco Becvort\",\r\n    \"genero\": 0,\r\n    \"edad\": 23,\r\n    \"identificacion\": \"41809105\",\r\n    \"direccion\": \"Rivadavia 1470\",\r\n    \"telefono\": \"1234567890\",\r\n    \"contrasena\": \"asdasdasd\",\r\n    \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{clientesUrl}}",
+							"host": [
+								"{{baseUrl}}{{clientesUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nombre\": \"Juan Osorio\",\r\n        \"genero\": \"MASCULINO\",\r\n        \"edad\": 18,\r\n        \"identificacion\": \"ID1113\",\r\n        \"direccion\": \"13 junio y Equinoccial\",\r\n        \"telefono\": \"098874587\",\r\n        \"contrasena\": \"123123\",\r\n        \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{clientesUrl}}/3",
+							"host": [
+								"{{baseUrl}}{{clientesUrl}}"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cuentas",
+			"item": [
+				{
+					"name": "findall",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{cuentasUrl}}",
+							"host": [
+								"{{baseUrl}}{{cuentasUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{cuentasUrl}}/5",
+							"host": [
+								"{{baseUrl}}{{cuentasUrl}}"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{cuentasUrl}}/7",
+							"host": [
+								"{{baseUrl}}{{cuentasUrl}}"
+							],
+							"path": [
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroCuenta\": 444555,\r\n    \"tipoCuenta\": 0,\r\n    \"saldo\": 549.99,\r\n    \"estado\": true,\r\n    \"clienteId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{cuentasUrl}}",
+							"host": [
+								"{{baseUrl}}{{cuentasUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroCuenta\": 555666,\r\n    \"tipoCuenta\": 1,\r\n    \"saldo\": 549.99,\r\n    \"estado\": true,\r\n    \"clienteId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{cuentasUrl}}/6",
+							"host": [
+								"{{baseUrl}}{{cuentasUrl}}"
+							],
+							"path": [
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retiro",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valor\": 4000.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{cuentasUrl}}/1/retiro",
+							"host": [
+								"{{baseUrl}}{{cuentasUrl}}"
+							],
+							"path": [
+								"1",
+								"retiro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deposito",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valor\": 600.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{cuentasUrl}}/1/deposito",
+							"host": [
+								"{{baseUrl}}{{cuentasUrl}}"
+							],
+							"path": [
+								"1",
+								"deposito"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "movimientos",
+			"item": [
+				{
+					"name": "findall",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{movimientosUrl}}",
+							"host": [
+								"{{baseUrl}}{{movimientosUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{movimientosUrl}}/1",
+							"host": [
+								"{{baseUrl}}{{movimientosUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{movimientosUrl}}/5",
+							"host": [
+								"{{baseUrl}}{{movimientosUrl}}"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\": \"2023-03-29T12:00:00.000-03:00\",\r\n    \"tipoMovimiento\" : 1,\r\n    \"valor\": 100.0,\r\n    \"saldoInicial\": 50.0,\r\n    \"cuentaId\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{movimientosUrl}}",
+							"host": [
+								"{{baseUrl}}{{movimientosUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoMovimiento\" : 1,\r\n    \"valor\": 101.0,\r\n    \"saldoInicial\": 50.0,\r\n    \"cuentaId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{movimientosUrl}}/5",
+							"host": [
+								"{{baseUrl}}{{movimientosUrl}}"
+							],
+							"path": [
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

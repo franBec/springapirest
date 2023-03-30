@@ -1,9 +1,5 @@
 package com.fbecvort.springapirest.util;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -26,11 +22,4 @@ public class DateUtils {
         return date.after(start) && date.before(end);
     }
 
-    public static Date setDateAtEndOfTheDay(Date date){
-        LocalDateTime localPeriodoEnd = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
-        LocalDate localDate = localPeriodoEnd.toLocalDate();
-        LocalTime localTime = LocalTime.of(23, 59, 59); // Set the time to 23:59:59
-        LocalDateTime endOfDay = LocalDateTime.of(localDate, localTime);
-        return Date.from(endOfDay.atZone(ZoneId.systemDefault()).toInstant());
-    }
 }

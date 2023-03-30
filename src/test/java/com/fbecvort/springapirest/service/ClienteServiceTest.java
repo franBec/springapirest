@@ -8,6 +8,7 @@ import com.fbecvort.springapirest.enumeration.Genero;
 import com.fbecvort.springapirest.exception.crud.EntityWithAssociatedElementsException;
 import com.fbecvort.springapirest.exception.crud.NoSuchElementException;
 import com.fbecvort.springapirest.repository.ClienteRepository;
+import com.fbecvort.springapirest.util.PaginationUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doNothing;
@@ -43,7 +43,7 @@ class ClienteServiceTest {
     private ClienteServiceImpl clienteService;
 
     @Test
-    public void testSave() {
+    public void save() {
         // Given
         ClienteRequestDTO request = ClienteRequestDTO
                 .builder()
@@ -94,10 +94,10 @@ class ClienteServiceTest {
     @Test
     void findAll() {
         // Given
-        int page = 0;
-        int size = 10;
-        String sortBy = "name";
-        String sortOrder = "asc";
+        int page = Integer.parseInt(PaginationUtils.PAGE_DEFAULT_VALUE);
+        int size = Integer.parseInt(PaginationUtils.SIZE_DEFAULT_VALUE);
+        String sortBy = PaginationUtils.CLIENTE_SORT_BY_DEFAULT_VALUE;
+        String sortOrder = PaginationUtils.SORT_ORDER_DEFAULT_VALUE;
 
         List<Cliente> clienteList = Arrays.asList(
                 Cliente
@@ -209,7 +209,7 @@ class ClienteServiceTest {
     @Test
     public void findById_withInvalidId() {
         // Given
-        Long id = 1L;
+        Long id = -1L;
 
         when(clienteRepository.findById(any(Long.class))).thenReturn(Optional.empty());
 
@@ -294,7 +294,7 @@ class ClienteServiceTest {
     @Test
     public void update_withInvalidId() {
         // Given
-        Long id = 1L;
+        Long id = -1L;
 
         ClienteRequestDTO request = ClienteRequestDTO
                 .builder()
@@ -359,8 +359,7 @@ class ClienteServiceTest {
                 .estado(true)
                 .build();
 
-        Cuenta cuenta = new Cuenta();
-        cliente.getCuentas().add(cuenta);
+        cliente.getCuentas().add(new Cuenta());
         when(clienteRepository.findById(id)).thenReturn(Optional.of(cliente));
 
         // When & Then
@@ -369,9 +368,9 @@ class ClienteServiceTest {
     }
 
     @Test
-    void deleteById_clientNotFound() {
+    void deleteById_withInvalidId() {
         // Given
-        Long id = 1L;
+        Long id = -1L;
 
         when(clienteRepository.findById(id)).thenReturn(Optional.empty());
 

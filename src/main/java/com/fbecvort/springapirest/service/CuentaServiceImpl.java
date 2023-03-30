@@ -95,7 +95,7 @@ public class CuentaServiceImpl implements CuentaService{
             updatedCuenta.setCliente(
                     clienteRepository
                             .findById(request.getClienteId())
-                            .orElseThrow(()-> new NoSuchElementException("Cuenta", "id", request.getClienteId()))
+                            .orElseThrow(()-> new NoSuchElementException("Cliente", "id", request.getClienteId()))
             );
         }
         else{
