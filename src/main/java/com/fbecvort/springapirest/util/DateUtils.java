@@ -28,8 +28,7 @@ public class DateUtils {
     public static Date createDateFromString(String dateString) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date date = formatter.parse(dateString);
-        return date;
+        return formatter.parse(dateString);
     }
 
 }
