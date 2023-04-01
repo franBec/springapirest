@@ -193,7 +193,7 @@ class CuentaServiceTest {
     @Test
     public void findById_withInvalidId(){
         // Given
-        Long id = 1L;
+        Long id = -1L;
 
         when(cuentaRepository.findById(any(Long.class))).thenReturn(Optional.empty());
 
