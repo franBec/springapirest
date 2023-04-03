@@ -22,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(MockitoExtension.class)
 class ClienteControllerTest {
+    final private String url = "/api/clientes";
 
     private MockMvc mockMvc;
     private ObjectMapper objectMapper;
@@ -74,7 +75,7 @@ class ClienteControllerTest {
         // When
         mockMvc
                 .perform(
-                        post("/api/clientes")
+                        post(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request))
                 )
@@ -82,7 +83,14 @@ class ClienteControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.personaId").value(response.getPersonaId()))
                 .andExpect(jsonPath("$.nombre").value(response.getNombre()))
-                .andExpect(jsonPath("$.edad").value(response.getEdad()));
+                .andExpect(jsonPath("$.genero").value(response.getGenero().toString()))
+                .andExpect(jsonPath("$.edad").value(response.getEdad()))
+                .andExpect(jsonPath("$.identificacion").value(response.getIdentificacion()))
+                .andExpect(jsonPath("$.direccion").value(response.getDireccion()))
+                .andExpect(jsonPath("$.telefono").value(response.getTelefono()))
+                .andExpect(jsonPath("$.contrasena").value(response.getContrasena()))
+                .andExpect(jsonPath("$.estado").value(response.isEstado()))
+                .andExpect(jsonPath("$.cuentasId").value(response.getCuentasId()));
     }
 
     @Test
