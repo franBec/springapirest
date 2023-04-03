@@ -11,14 +11,23 @@ public class DateUtils {
 
     public static boolean checkIfDateHappenedToday(Date date){
         // create a calendar instance and set it to the beginning of today
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        Date today = cal.getTime();
+        Calendar calToday = Calendar.getInstance();
+        calToday.set(Calendar.HOUR_OF_DAY, 0);
+        calToday.set(Calendar.MINUTE, 0);
+        calToday.set(Calendar.SECOND, 0);
+        calToday.set(Calendar.MILLISECOND, 0);
+        Date today = calToday.getTime();
 
-        return date.compareTo(today) == 0;
+        // create a calendar instance for the date to compare and set it to the beginning of that day
+        Calendar calDate = Calendar.getInstance();
+        calDate.setTime(date);
+        calDate.set(Calendar.HOUR_OF_DAY, 0);
+        calDate.set(Calendar.MINUTE, 0);
+        calDate.set(Calendar.SECOND, 0);
+        calDate.set(Calendar.MILLISECOND, 0);
+        Date compareDate = calDate.getTime();
+
+        return compareDate.compareTo(today) == 0;
     }
 
     public static boolean checkIfDateHappenedBetweenTwoDates(Date date, Date start, Date end) {
