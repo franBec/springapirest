@@ -1,35 +1,37 @@
 package com.fbecvort.springapirest.util;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import com.fbecvort.springapirest.exception.crud.IllegalPaginationArgumentException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.Objects;
 
 @Validated
 public class PaginationUtils {
     private PaginationUtils() {}
 
     // Instance of Pageable used by all the findAll() methods
-    public static Pageable createPageable(
-            @Min(value = 0, message = PAGE_MIN_VALUE_MESSAGE)
-            @Valid int page,
+    public static Pageable createPageable(int page, int size, String sortBy, String sortOrder) {
+        if(page < PAGE_MIN_VALUE)
+            throw new IllegalPaginationArgumentException(page, PAGE_MIN_MESSAGE);
 
-            @Min(value = SIZE_MIN_VALUE, message = SIZE_MIN_MESSAGE)
-            @Max(value = SIZE_MAX_VALUE, message = SIZE_MAX_MESSAGE)
-            @Valid int size,
+        if(size < SIZE_MIN_VALUE)
+            throw new IllegalPaginationArgumentException(size, SIZE_MIN_MESSAGE);
 
-            @NotNull(message = SORT_BY_NOT_NULL_MESSAGE)
-            @Valid String sortBy,
+        if(size > SIZE_MAX_VALUE)
+            throw new IllegalPaginationArgumentException(size, SIZE_MAX_MESSAGE);
 
-            @NotNull(message = SORT_ORDER_NOT_NULL_MESSAGE)
-            @Pattern(regexp = SORT_ORDER_PATTERN_REGEXP_VALUE, message = SORT_ORDER_PATTERN_REGEXP_MESSAGE)
-            @Valid String sortOrder
-    ) {
+        if(Objects.isNull(sortBy))
+            throw new IllegalPaginationArgumentException(null, SORT_BY_NOT_NULL_MESSAGE);
+
+        if(Objects.isNull(sortOrder))
+            throw new IllegalPaginationArgumentException(null, SORT_ORDER_NOT_NULL_MESSAGE);
+
+        if(!sortOrder.matches(SORT_ORDER_PATTERN_REGEXP_VALUE))
+            throw new IllegalPaginationArgumentException(sortOrder, SORT_ORDER_PATTERN_REGEXP_MESSAGE);
+
         return PageRequest.of(
                 page,
                 size,
@@ -38,10 +40,11 @@ public class PaginationUtils {
         );
     }
 
-
     // COMMON CONSTANTS ACROSS ALL PAGINATION METHODS
 
-    public static final String PAGE_MIN_VALUE_MESSAGE = "El número de página debe ser mayor o igual a cero";
+    public static final int PAGE_MIN_VALUE = 0;
+    public static final String PAGE_MIN_MESSAGE = "El número de página debe ser mayor o igual a cero";
+
     public static final String PAGE_DEFAULT_VALUE = "0";
 
     public static final int SIZE_MIN_VALUE = 1;
@@ -56,8 +59,8 @@ public class PaginationUtils {
 
     public static final String SORT_ORDER_NOT_NULL_MESSAGE = "El parámetro sortOrder no puede ser nulo";
 
-    public static final String SORT_ORDER_PATTERN_REGEXP_MESSAGE = "El parámetro sortOrder debe ser 'asc' o 'desc'";
     public static final String SORT_ORDER_PATTERN_REGEXP_VALUE = "asc|desc";
+    public static final String SORT_ORDER_PATTERN_REGEXP_MESSAGE = "El parámetro sortOrder debe ser 'asc' o 'desc'";
 
     public static final String SORT_ORDER_DEFAULT_VALUE = "asc";
 

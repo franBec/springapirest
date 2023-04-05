@@ -2,6 +2,7 @@ package com.fbecvort.springapirest.exception;
 
 import com.fbecvort.springapirest.exception.bussinessneed.CupoDiarioExcedidoException;
 import com.fbecvort.springapirest.exception.crud.EntityWithAssociatedElementsException;
+import com.fbecvort.springapirest.exception.crud.IllegalPaginationArgumentException;
 import com.fbecvort.springapirest.exception.crud.NoSuchElementException;
 import com.fbecvort.springapirest.exception.bussinessneed.SaldoNoDisponibleException;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +33,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Value("${springapirest.movimiento.retiro-limite-diario:1000.0}")
     private BigDecimal retiroLimiteDiario;
 
-    // ---- Error response builder ----
+    // ---- error response builder ----
     private ResponseEntity<Object> buildErrorResponse(Exception exception, String message, HttpStatusCode httpStatus) {
         ErrorResponse errorResponse = new ErrorResponse(httpStatus.value(), message);
 
@@ -43,7 +44,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(httpStatus).body(errorResponse);
     }
 
-    // ---- Overriden handlers ----
+    // ---- overriden handlers ----
 
     @Override
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
@@ -67,7 +68,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildErrorResponse(ex, ex.getMessage(), statusCode);
     }
 
-    // ---- NOT overriden handlers ----
+    // ---- com.fbecvort.springapirest.exception.crud ----
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<Object> handleNoSuchElementFoundException(NoSuchElementException ex) {
@@ -90,6 +91,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST
         );
     }
+
+    @ExceptionHandler(IllegalPaginationArgumentException.class)
+    public ResponseEntity<Object> handleIllegalPaginationArgumentException(IllegalPaginationArgumentException ex) {
+        log.info(ex.getMessage());
+
+        return buildErrorResponse(
+                ex,
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    // ---- com.fbecvort.springapirest.exception.bussinessneed ----
 
     @ExceptionHandler(SaldoNoDisponibleException.class)
     public ResponseEntity<Object> handleSaldoNoDisponibleException(SaldoNoDisponibleException ex){
@@ -119,6 +133,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST
         );
     }
+
+    // ---- worst scenario ----
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

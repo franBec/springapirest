@@ -31,7 +31,7 @@ public class DateUtils {
     }
 
     public static boolean checkIfDateHappenedBetweenTwoDates(Date date, Date start, Date end) {
-        return date.after(start) && date.before(end);
+        return (date.equals(start) || date.equals(end)) || (date.after(start) && date.before(end));
     }
 
     public static Date createDateFromString(String dateString) throws ParseException {
