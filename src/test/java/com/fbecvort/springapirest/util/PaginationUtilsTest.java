@@ -16,7 +16,7 @@ class PaginationUtilsTest {
     private static final String VALID_SORT_ORDER = "asc";
 
     @Test
-    public void createPageable() {
+    void createPageable() {
         Pageable pageable = PaginationUtils.createPageable(VALID_PAGE, VALID_SIZE, VALID_SORT_BY, VALID_SORT_ORDER);
 
         assertNotNull(pageable);
@@ -26,31 +26,31 @@ class PaginationUtilsTest {
     }
 
     @Test
-    public void createPageable_withInvalidPage() {
+    void createPageable_withInvalidPage() {
         assertThrows(IllegalPaginationArgumentException.class, () ->
                 PaginationUtils.createPageable(-1, VALID_SIZE, VALID_SORT_BY, VALID_SORT_ORDER));
     }
 
     @Test
-    public void createPageable_withInvalidSize() {
+    void createPageable_withInvalidSize() {
         assertThrows(IllegalPaginationArgumentException.class, () ->
                 PaginationUtils.createPageable(VALID_PAGE, -1, VALID_SORT_BY, VALID_SORT_ORDER));
     }
 
     @Test
-    public void createPageable_withInvalidSortBy() {
+    void createPageable_withInvalidSortBy() {
         assertThrows(IllegalPaginationArgumentException.class, () ->
                 PaginationUtils.createPageable(VALID_PAGE, VALID_SIZE, null, VALID_SORT_ORDER));
     }
 
     @Test
-    public void createPageable_withInvalidSortOrder() {
+    void createPageable_withInvalidSortOrder() {
         assertThrows(IllegalPaginationArgumentException.class, () ->
                 PaginationUtils.createPageable(VALID_PAGE, VALID_SIZE, VALID_SORT_BY, null));
     }
 
     @Test
-    public void createPageable_withInvalidSortOrderPattern() {
+    void createPageable_withInvalidSortOrderPattern() {
         assertThrows(IllegalPaginationArgumentException.class, () ->
                 PaginationUtils.createPageable(VALID_PAGE, VALID_SIZE, VALID_SORT_BY, "invalid"));
     }

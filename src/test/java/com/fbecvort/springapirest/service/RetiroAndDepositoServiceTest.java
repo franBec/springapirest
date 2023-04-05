@@ -91,7 +91,7 @@ class RetiroAndDepositoServiceTest {
         //This make the private BigDecimal retiroLimiteDiario in RetiroAndDepositoServiceImpl not be null
         Field field = retiroAndDepositoService.getClass().getDeclaredField("retiroLimiteDiario");
         field.setAccessible(true);
-        field.set(retiroAndDepositoService, new BigDecimal("1000.0"));
+        field.set(retiroAndDepositoService, BigDecimal.valueOf(1000.0));
 
         // Given
         Long cuentaId = 1L;
@@ -146,7 +146,7 @@ class RetiroAndDepositoServiceTest {
         //This make the private BigDecimal retiroLimiteDiario in RetiroAndDepositoServiceImpl not be null
         Field field = retiroAndDepositoService.getClass().getDeclaredField("retiroLimiteDiario");
         field.setAccessible(true);
-        field.set(retiroAndDepositoService, new BigDecimal("1000.0"));
+        field.set(retiroAndDepositoService, BigDecimal.valueOf(1000.0));
 
         Long cuentaId = 1L;
         BigDecimal valor = BigDecimal.valueOf(200);
@@ -154,7 +154,7 @@ class RetiroAndDepositoServiceTest {
 
         Cuenta cuenta = Cuenta.builder()
                 .cuentaId(cuentaId)
-                .saldo(new BigDecimal("5000.0"))
+                .saldo(BigDecimal.valueOf(5000.0))
                 .build();
 
         cuenta.getMovimientos().addAll(Arrays.asList(
@@ -163,8 +163,8 @@ class RetiroAndDepositoServiceTest {
                         .movimientoId(10L)
                         .fecha(new Date())
                         .tipoMovimiento(TipoMovimiento.RETIRO)
-                        .valor(new BigDecimal("500.0"))
-                        .saldoInicial(new BigDecimal("5900.0"))
+                        .valor(BigDecimal.valueOf(500.0))
+                        .saldoInicial(BigDecimal.valueOf(5900.0))
                         .cuenta(cuenta)
                         .build(),
 
@@ -173,8 +173,8 @@ class RetiroAndDepositoServiceTest {
                         .movimientoId(11L)
                         .fecha(new Date())
                         .tipoMovimiento(TipoMovimiento.RETIRO)
-                        .valor(new BigDecimal("400.0"))
-                        .saldoInicial(new BigDecimal("5400.0"))
+                        .valor(BigDecimal.valueOf(400.0))
+                        .saldoInicial(BigDecimal.valueOf(5400.0))
                         .cuenta(cuenta)
                         .build()
         ));

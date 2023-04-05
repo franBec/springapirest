@@ -55,7 +55,7 @@ class CuentaServiceTest {
                 .builder()
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("544.99"))
+                .saldo(BigDecimal.valueOf(544.99))
                 .estado(true)
                 .clienteId(1L)
                 .build();
@@ -67,7 +67,7 @@ class CuentaServiceTest {
                 .cuentaId(1L)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("544.99"))
+                .saldo(BigDecimal.valueOf(544.99))
                 .estado(true)
                 .cliente(cliente)
                 .build();
@@ -108,7 +108,7 @@ class CuentaServiceTest {
                         .cuentaId(1L)
                         .numeroCuenta(444555)
                         .tipoCuenta(TipoCuenta.AHORROS)
-                        .saldo(new BigDecimal("544.99"))
+                        .saldo(BigDecimal.valueOf(544.99))
                         .estado(true)
                         .cliente(cliente)
                         .build(),
@@ -118,7 +118,7 @@ class CuentaServiceTest {
                         .cuentaId(2L)
                         .numeroCuenta(123123)
                         .tipoCuenta(TipoCuenta.CORRIENTE)
-                        .saldo(new BigDecimal("123.99"))
+                        .saldo(BigDecimal.valueOf(123.99))
                         .estado(true)
                         .cliente(cliente)
                         .build()
@@ -161,7 +161,7 @@ class CuentaServiceTest {
                 .cuentaId(1L)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("544.99"))
+                .saldo(BigDecimal.valueOf(544.99))
                 .estado(true)
                 .cliente(cliente)
                 .build();
@@ -171,7 +171,7 @@ class CuentaServiceTest {
                 .cuentaId(1L)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("544.99"))
+                .saldo(BigDecimal.valueOf(544.99))
                 .estado(true)
                 .clienteId(cliente.getPersonaId())
                 .build();
@@ -191,7 +191,7 @@ class CuentaServiceTest {
     }
 
     @Test
-    public void findById_withInvalidId(){
+    void findById_withInvalidId(){
         // Given
         Long id = -1L;
 
@@ -213,7 +213,7 @@ class CuentaServiceTest {
                 .builder()
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.CORRIENTE)
-                .saldo(new BigDecimal("899.99"))
+                .saldo(BigDecimal.valueOf(899.99))
                 .estado(true)
                 .clienteId(clienteId)
                 .build();
@@ -223,7 +223,7 @@ class CuentaServiceTest {
                 .cuentaId(cuentaId)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("549.99"))
+                .saldo(BigDecimal.valueOf(549.99))
                 .estado(true)
                 .cliente(cliente)
                 .build();
@@ -233,7 +233,7 @@ class CuentaServiceTest {
                 .cuentaId(cuentaId)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.CORRIENTE)
-                .saldo(new BigDecimal("899.99"))
+                .saldo(BigDecimal.valueOf(899.99))
                 .estado(true)
                 .cliente(cliente)
                 .build();
@@ -243,7 +243,7 @@ class CuentaServiceTest {
                 .cuentaId(cuentaId)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.CORRIENTE)
-                .saldo(new BigDecimal("899.99"))
+                .saldo(BigDecimal.valueOf(899.99))
                 .estado(true)
                 .clienteId(clienteId)
                 .build();
@@ -277,7 +277,7 @@ class CuentaServiceTest {
                 .builder()
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.CORRIENTE)
-                .saldo(new BigDecimal("899.99"))
+                .saldo(BigDecimal.valueOf(899.99))
                 .estado(true)
                 .clienteId(clienteNuevoId)
                 .build();
@@ -287,7 +287,7 @@ class CuentaServiceTest {
                 .cuentaId(cuentaId)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("549.99"))
+                .saldo(BigDecimal.valueOf(549.99))
                 .estado(true)
                 .cliente(clienteActual)
                 .build();
@@ -297,7 +297,7 @@ class CuentaServiceTest {
                 .cuentaId(cuentaId)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.CORRIENTE)
-                .saldo(new BigDecimal("899.99"))
+                .saldo(BigDecimal.valueOf(899.99))
                 .estado(true)
                 .cliente(clienteNuevo)
                 .build();
@@ -307,7 +307,7 @@ class CuentaServiceTest {
                 .cuentaId(cuentaId)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.CORRIENTE)
-                .saldo(new BigDecimal("899.99"))
+                .saldo(BigDecimal.valueOf(899.99))
                 .estado(true)
                 .clienteId(clienteNuevoId)
                 .build();
@@ -341,7 +341,7 @@ class CuentaServiceTest {
                 .builder()
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.CORRIENTE)
-                .saldo(new BigDecimal("899.99"))
+                .saldo(BigDecimal.valueOf(899.99))
                 .estado(true)
                 .clienteId(clienteInvalidoId)
                 .build();
@@ -351,7 +351,7 @@ class CuentaServiceTest {
                 .cuentaId(cuentaId)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("549.99"))
+                .saldo(BigDecimal.valueOf(549.99))
                 .estado(true)
                 .cliente(clienteActual)
                 .build();
@@ -373,7 +373,7 @@ class CuentaServiceTest {
                 .builder()
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.CORRIENTE)
-                .saldo(new BigDecimal("899.99"))
+                .saldo(BigDecimal.valueOf(899.99))
                 .estado(true)
                 .clienteId(clienteId)
                 .build();
@@ -396,7 +396,7 @@ class CuentaServiceTest {
                 .cuentaId(1L)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("544.99"))
+                .saldo(BigDecimal.valueOf(544.99))
                 .estado(true)
                 .cliente(cliente)
                 .build();
@@ -423,7 +423,7 @@ class CuentaServiceTest {
                 .cuentaId(1L)
                 .numeroCuenta(444555)
                 .tipoCuenta(TipoCuenta.AHORROS)
-                .saldo(new BigDecimal("544.99"))
+                .saldo(BigDecimal.valueOf(544.99))
                 .estado(true)
                 .cliente(cliente)
                 .build();

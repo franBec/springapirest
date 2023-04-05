@@ -58,8 +58,8 @@ class MovimientoServiceTest {
                 .builder()
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("100.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(100.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuentaId(cuentaId)
                 .build();
 
@@ -70,8 +70,8 @@ class MovimientoServiceTest {
                 .movimientoId(movimientoId)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("100.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(100.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuenta(cuenta)
                 .build();
 
@@ -110,8 +110,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("100.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(100.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuenta(cuenta)
                 .build();
 
@@ -120,8 +120,8 @@ class MovimientoServiceTest {
                 .movimientoId(2L)
                 .fecha(DateUtils.createDateFromString("2023-04-01T10:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.DEPOSITO)
-                .valor(new BigDecimal("500.0"))
-                .saldoInicial(new BigDecimal("99.0"))
+                .valor(BigDecimal.valueOf(500.0))
+                .saldoInicial(BigDecimal.valueOf(99.0))
                 .cuenta(cuenta)
                 .build();
 
@@ -164,8 +164,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("100.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(100.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuenta(cuenta)
                 .build();
 
@@ -174,8 +174,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("100.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(100.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuentaId(cuentaId)
                 .build();
 
@@ -194,7 +194,7 @@ class MovimientoServiceTest {
     }
 
     @Test
-    public void findById_withInvalidId(){
+    void findById_withInvalidId(){
         // Given
         Long id = -1L;
         when(movimientoRepository.findById(any(Long.class))).thenReturn(Optional.empty());
@@ -214,8 +214,8 @@ class MovimientoServiceTest {
                 .builder()
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:15:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("10.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(10.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuentaId(cuentaId)
                 .build();
 
@@ -224,8 +224,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("100.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(100.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuenta(cuenta)
                 .build();
 
@@ -234,8 +234,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:15:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("10.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(10.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuenta(cuenta)
                 .build();
 
@@ -244,8 +244,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:15:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("10.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(10.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuentaId(cuentaId)
                 .build();
 
@@ -277,8 +277,8 @@ class MovimientoServiceTest {
                 .builder()
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:15:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("10.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(10.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuentaId(cuentaNuevaId)
                 .build();
 
@@ -287,8 +287,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("100.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(100.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuenta(cuentaActual)
                 .build();
 
@@ -297,8 +297,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:15:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("10.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(10.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuenta(cuentaNueva)
                 .build();
 
@@ -307,8 +307,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:15:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("10.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(10.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuentaId(cuentaNuevaId)
                 .build();
 
@@ -342,8 +342,8 @@ class MovimientoServiceTest {
                 .builder()
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:15:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("10.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(10.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuentaId(cuentaInvalidaId)
                 .build();
 
@@ -352,8 +352,8 @@ class MovimientoServiceTest {
                 .movimientoId(1L)
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:00:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("100.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(100.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuenta(cuentaActual)
                 .build();
 
@@ -373,8 +373,8 @@ class MovimientoServiceTest {
                 .builder()
                 .fecha(DateUtils.createDateFromString("2023-03-29T12:15:00.000-03:00"))
                 .tipoMovimiento(TipoMovimiento.RETIRO)
-                .valor(new BigDecimal("10.0"))
-                .saldoInicial(new BigDecimal("50.0"))
+                .valor(BigDecimal.valueOf(10.0))
+                .saldoInicial(BigDecimal.valueOf(50.0))
                 .cuentaId(cuentaId)
                 .build();
 

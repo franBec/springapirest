@@ -207,7 +207,7 @@ class ClienteServiceTest {
     }
 
     @Test
-    public void findById_withInvalidId() {
+    void findById_withInvalidId() {
         // Given
         Long id = -1L;
 
@@ -292,7 +292,7 @@ class ClienteServiceTest {
     }
 
     @Test
-    public void update_withInvalidId() {
+    void update_withInvalidId() {
         // Given
         Long id = -1L;
 
